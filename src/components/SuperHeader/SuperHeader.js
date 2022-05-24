@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { COLORS, QUERIES } from '../../constants';
+import { QUERIES } from '../../constants';
 
 import SearchInput from '../SearchInput';
 import UnstyledButton from '../UnstyledButton';
@@ -30,7 +30,7 @@ const GrayBar = styled.div`
   
   @media ${QUERIES.tablet} {
     display: block;
-    border-bottom: 2px solid ${COLORS.gray[100]};
+    border-bottom: 2px solid var(--gray100);
   }
 `;
 
@@ -39,8 +39,8 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 24px;
   font-size: 0.875rem;
-  color: ${COLORS.gray[300]};
-  background-color: ${COLORS.gray[900]};
+  color: var(--gray300);
+  background-color: var(--gray900);
   height: 40px;
   padding-left: 32px;
   padding-right: 32px;
@@ -51,7 +51,7 @@ const Wrapper = styled.div`
 `;
 
 const MarketingMessage = styled.span`
-  color: ${COLORS.white};
+  color: var(--white);
   margin-right: auto; 
 `;
 
