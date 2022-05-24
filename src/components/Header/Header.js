@@ -25,11 +25,11 @@ const Header = () => {
           <Logo />
         </Side>
         <Nav>
-          <NavLink href="/sale">Sale</NavLink>
-          <NavLink href="/new">New&nbsp;Releases</NavLink>
-          <NavLink href="/men">Men</NavLink>
-          <NavLink href="/women">Women</NavLink>
-          <NavLink href="/kids">Kids</NavLink>
+          <NavLink href="/sale">A&nbsp;VENDRE</NavLink>
+          <NavLink href="/new">NOUBELLES&nbsp;Versions</NavLink>
+          <NavLink href="/men">Hommes</NavLink>
+          <NavLink href="/women">Femmes</NavLink>
+          <NavLink href="/kids">Les&nbsp;Enfants</NavLink>
           <NavLink href="/collections">Collections</NavLink>
         </Nav>
         <Side />
@@ -98,16 +98,25 @@ const NavIcons = styled.div`
   align-items: baseline;
   justify-content: flex-end;
   gap: 32px;
-
-  @media ${QUERIES.phone} {
-    gap: 20px;
-  }
 `;
 
 const Nav = styled.nav`
   display: flex;
-  gap: 48px;
-  margin: 0 48px;
+  gap: clamp(
+          16px,
+          14vw - 7.5rem,
+          48px
+  );
+  margin: 0 clamp(
+          16px,
+          14vw - 8.5rem,
+          48px
+  );
+  overflow-x: scroll;
+
+  @media ${QUERIES.tablet} {
+    display: none; 
+  }
 `;
 
 const Side = styled.div`
