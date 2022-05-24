@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { COLORS } from '../../constants';
+import { COLORS, QUERIES } from '../../constants';
 
 import SearchInput from '../SearchInput';
 import UnstyledButton from '../UnstyledButton';
@@ -9,18 +9,30 @@ import Icon from '../Icon';
 
 const SuperHeader = () => {
   return (
-    <Wrapper>
-      <MarketingMessage>
-        Free shipping on domestic orders over $75!
-      </MarketingMessage>
-      <SearchInput />
-      <HelpLink href="/help">Help</HelpLink>
-      <UnstyledButton>
-        <Icon id="shopping-bag" strokeWidth={1} />
-      </UnstyledButton>
-    </Wrapper>
+    <>
+      <GrayBar />
+      <Wrapper>
+        <MarketingMessage>
+          Free shipping on domestic orders over $75!
+        </MarketingMessage>
+        <SearchInput />
+        <HelpLink href="/help">Help</HelpLink>
+        <UnstyledButton>
+          <Icon id="shopping-bag" strokeWidth={1} />
+        </UnstyledButton>
+      </Wrapper>
+    </>
   );
 };
+
+const GrayBar = styled.div`
+  display: none;
+  
+  @media ${QUERIES.tablet} {
+    display: block;
+    border-bottom: 2px solid ${COLORS.gray[100]};
+  }
+`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -32,11 +44,15 @@ const Wrapper = styled.div`
   height: 40px;
   padding-left: 32px;
   padding-right: 32px;
+
+  @media ${QUERIES.tablet} {
+    display: none;
+  }  
 `;
 
 const MarketingMessage = styled.span`
   color: ${COLORS.white};
-  margin-right: auto;
+  margin-right: auto; 
 `;
 
 const HelpLink = styled.a`

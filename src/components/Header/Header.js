@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { COLORS, WEIGHTS } from '../../constants';
+import { COLORS, WEIGHTS, QUERIES } from '../../constants';
 import Logo from '../Logo';
 import SuperHeader from '../SuperHeader';
 import MobileMenu from '../MobileMenu';
+import UnstyledButton from "../UnstyledButton";
+import Icon from '../Icon';
 
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
@@ -31,6 +33,24 @@ const Header = () => {
         </Nav>
         <Side />
       </MainHeader>
+      <MobileHeader>
+        <Side>
+          <Logo />
+        </Side>
+        <Side>
+          <NavIcons>
+            <UnstyledButton>
+              <Icon id="shopping-bag" />
+            </UnstyledButton>
+            <UnstyledButton>
+              <Icon id="search" />
+            </UnstyledButton>
+            <UnstyledButton onClick={() => setShowMobileMenu(true)}>
+              <Icon id="menu" />
+            </UnstyledButton>
+          </NavIcons>
+        </Side>
+      </MobileHeader>
 
       <MobileMenu
         isOpen={showMobileMenu}
@@ -46,6 +66,38 @@ const MainHeader = styled.div`
   padding: 18px 32px;
   height: 72px;
   border-bottom: 1px solid ${COLORS.gray[300]};
+
+  @media ${QUERIES.tablet} {
+    display: none;
+  }
+`;
+
+// noinspection CssUnknownProperty
+const MobileHeader = styled.div`
+  display: none;
+  
+  @media ${QUERIES.tablet} {
+    display: flex;
+    align-items: baseline;
+    padding: 18px 32px;
+    height: 72px;
+    border-bottom: 1px solid ${COLORS.gray[300]};
+  }
+  
+  @media ${QUERIES.phone} {
+    padding: 18px 16px;
+  }
+`;
+
+const NavIcons = styled.div`
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 32px;
+
+  @media ${QUERIES.phone} {
+    gap: 20px;
+  }
 `;
 
 const Nav = styled.nav`
