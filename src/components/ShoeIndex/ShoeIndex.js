@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { WEIGHTS } from '../../constants';
+import { WEIGHTS, QUERIES } from '../../constants';
 
 import Breadcrumbs from '../Breadcrumbs';
 import Select from '../Select';
@@ -15,14 +15,16 @@ const ShoeIndex = ({ sortId, setSortId }) => {
       <MainColumn>
         <Header>
           <Title>Running</Title>
-          <Select
-            label="Sort"
-            value={sortId}
-            onChange={(ev) => setSortId(ev.target.value)}
-          >
-            <option value="newest">Newest Releases</option>
-            <option value="price">Price</option>
-          </Select>
+          <MobileHide>
+            <Select
+              label="Sort"
+              value={sortId}
+              onChange={(ev) => setSortId(ev.target.value)}
+            >
+              <option value="newest">Newest Releases</option>
+              <option value="price">Price</option>
+            </Select>
+          </MobileHide>
         </Header>
         <Spacer size={32} />
         <ShoeGrid />
@@ -35,8 +37,10 @@ const ShoeIndex = ({ sortId, setSortId }) => {
             Shoes
           </Breadcrumbs.Crumb>
         </Breadcrumbs>
-        <Spacer size={42} />
-        <ShoeSidebar />
+        <DesktopOnly>
+          <Spacer size={42} />
+          <ShoeSidebar />
+        </DesktopOnly>
       </LeftColumn>
     </Wrapper>
   );
@@ -47,10 +51,31 @@ const Wrapper = styled.div`
   flex-direction: row-reverse;
   align-items: baseline;
   gap: 32px;
+
+  @media ${QUERIES.tablet} {
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    gap: 0;
+  }
 `;
 
 const LeftColumn = styled.div`
   flex-basis: 248px;
+
+  @media ${QUERIES.tablet} {
+    flex-basis: 0;     
+  }  
+`;
+
+const DesktopOnly = styled.div`
+  @media ${QUERIES.tablet} {
+    display: none;
+  }
+`;
+const MobileHide = styled.div`
+  @media ${QUERIES.phone} {
+    display: none;
+  }
 `;
 
 const MainColumn = styled.div`
@@ -67,5 +92,6 @@ const Title = styled.h2`
   font-size: 1.5rem;
   font-weight: ${WEIGHTS.medium};
 `;
+
 
 export default ShoeIndex;
